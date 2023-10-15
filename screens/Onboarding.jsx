@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import React, { useCallback, useRef, useState } from 'react';
+import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from '../contexts/FontsContext';
 import OnboardingItem from '../components/OnboardingItem';
 import OnboardingPagination, {
@@ -78,16 +77,40 @@ const {
   swiperPaginationButtonText,
 } = styles;
 
+const renderItem = function ({ item }) {
+  return <OnboardingItem item={item} />;
+};
+
 function Onboarding() {
   const swiperRef = useRef(null);
+  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
   const { fontsLoaded } = useFonts();
   const fontFamilyReg = fontsLoaded ? 'Raleway-Regular' : '';
 
-  const [currentSelectedPagination, setCurrentSelectedPagination] = useState(0);
+  const [itemInViewId, setItemInViewId] = useState(null);
+  const itemW = Dimensions.get('window').width;
 
   function handleClickToNextSlide() {
-    swiperRef.current?.snapToNext();
+    if (itemInViewId < onboardingItems.length) {
+      swiperRef.current?.scrollToOffset({
+        offset: itemW * (itemInViewId * 1),
+      });
+    }
   }
+
+  const onViewableItemsChanged = useCallback((info) => {
+    const { viewableItems } = info;
+
+    const [viewableItem] = viewableItems;
+
+    if (viewableItem) {
+      const { key } = viewableItem;
+
+      setItemInViewId(key);
+    } else {
+      setItemInViewId(null);
+    }
+  }, []);
 
   return (
     <View>
@@ -100,25 +123,26 @@ function Onboarding() {
       >
         Skip
       </Text>
-      <Carousel
+      <FlatList
         ref={swiperRef}
         data={onboardingItems}
-        renderItem={({ item }) => <OnboardingItem item={item} />}
-        sliderWidth={Dimensions.get('window').width}
-        sliderHeight={Dimensions.get('window').height}
-        itemWidth={Dimensions.get('window').width}
-        itemHeight={Dimensions.get('window').height}
-        onSnapToItem={(index) => setCurrentSelectedPagination(() => index)}
-        firstItem={0}
+        keyExtractor={(item) => item.id}
+        horizontal
+        snapToInterval={Dimensions.get('window').width}
+        showsHorizontalScrollIndicator={false}
+        renderItem={renderItem}
+        initialScrollIndex={0}
+        viewabilityConfig={viewConfigRef.current}
+        onViewableItemsChanged={onViewableItemsChanged}
       />
 
       <OnboardingPagination
         itemsLength={onboardingItems.length}
-        activeDotIndex={currentSelectedPagination}
+        dotIndex={itemInViewId}
       />
 
       <OnboradingNextBottonText
-        currentIndex={currentSelectedPagination}
+        currentIndex={itemInViewId}
         onClickNextPagination={handleClickToNextSlide}
       />
     </View>

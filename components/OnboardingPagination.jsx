@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { Pagination } from 'react-native-snap-carousel';
 import { useFonts } from '../contexts/FontsContext';
+import OnboardingPaginationItem from './OnboardingPaginationItem';
 
 const arrImage = require('../assets/right-arr.png');
 
@@ -10,25 +10,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  swiperPaginationItem: {
-    width: 6,
-    height: 6,
-    borderRadius: 6,
-    backgroundColor: '#CFD8DD',
-    marginHorizontal: 0,
+    gap: 8,
+    marginVertical: 16,
   },
   swiperPaginationButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-  },
-  swiperPaginationActiveButton: {
-    width: 12,
-    height: 4,
-    borderRadius: 12,
-    backgroundColor: '#FEC107',
   },
   swiperPaginationButtonText: {
     fontSize: 14,
@@ -37,25 +26,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const {
-  swiperPagination,
-  swiperPaginationButton,
-  swiperPaginationButtonText,
-  swiperPaginationItem,
-  swiperPaginationActiveButton,
-} = styles;
+const { swiperPagination, swiperPaginationButton, swiperPaginationButtonText } =
+  styles;
 
-export default function OnboardingPagination({ itemsLength, activeDotIndex }) {
+export default function OnboardingPagination({ itemsLength, dotIndex }) {
   return (
-    <Pagination
-      dotsLength={itemsLength}
-      activeDotIndex={activeDotIndex}
-      containerStyle={swiperPagination}
-      dotStyle={swiperPaginationActiveButton}
-      inactiveDotStyle={swiperPaginationItem}
-      inactiveDotOpacity={1}
-      inactiveDotScale={1}
-    />
+    <View style={swiperPagination}>
+      {Array.from({ length: itemsLength }).map((_, idx) => (
+        <OnboardingPaginationItem
+          key={idx}
+          active={dotIndex !== null && dotIndex - 1 === idx}
+        />
+      ))}
+    </View>
   );
 }
 
@@ -75,7 +58,7 @@ export function OnboradingNextBottonText({
         }}
         onPress={onClickNextPagination}
       >
-        {currentIndex < 3 ? 'Next' : 'Continue'}
+        {currentIndex < 4 ? 'Next' : 'Continue'}
       </Text>
       <Image source={arrImage} />
     </View>
