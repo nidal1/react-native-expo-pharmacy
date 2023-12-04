@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
-import { useFonts } from '../contexts/FontsContext';
+import { useFonts } from '../../contexts/FontsContext';
 
 const styles = StyleSheet.create({
   title: {

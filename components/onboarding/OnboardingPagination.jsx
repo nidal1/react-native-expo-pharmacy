@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { useFonts } from '../contexts/FontsContext';
+import { useFonts } from '../../contexts/FontsContext';
 import OnboardingPaginationItem from './OnboardingPaginationItem';
 
-const arrImage = require('../assets/right-arr.png');
+const arrImage = require('../../assets/right-arr.png');
 
 const styles = StyleSheet.create({
   swiperPagination: {

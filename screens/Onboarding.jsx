@@ -2,10 +2,10 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from '../contexts/FontsContext';
-import OnboardingItem from '../components/OnboardingItem';
+import OnboardingItem from '../components/onboarding/OnboardingItem';
 import OnboardingPagination, {
   OnboradingNextBottonText,
-} from '../components/OnboardingPagination';
+} from '../components/onboarding/OnboardingPagination';
 
 const styles = StyleSheet.create({
   container: {
