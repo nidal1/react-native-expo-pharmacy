@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'object-curly-newline': 'off',
     'operator-linebreak': 'off',
+    'comma-dangle': 'off',
     'react/jsx-wrap-multilines': 'off',
     'react/jsx-props-no-spreading': 'off',
     'import/no-extraneous-dependencies': 'off',

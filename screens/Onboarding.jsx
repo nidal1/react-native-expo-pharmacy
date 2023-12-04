@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { useCallback, useRef, useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from '../contexts/FontsContext';
@@ -70,12 +71,7 @@ const onboardingItems = [
   },
 ];
 
-const {
-  swiperPagination,
-  skipText,
-  swiperPaginationButton,
-  swiperPaginationButtonText,
-} = styles;
+const { skipText } = styles;
 
 const renderItem = function ({ item }) {
   return <OnboardingItem item={item} />;
