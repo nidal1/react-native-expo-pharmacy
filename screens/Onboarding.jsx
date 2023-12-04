@@ -77,7 +77,7 @@ const renderItem = function ({ item }) {
   return <OnboardingItem item={item} />;
 };
 
-function Onboarding() {
+function Onboarding({ navigation }) {
   const swiperRef = useRef(null);
   const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
   const { fontsLoaded } = useFonts();
@@ -115,7 +115,7 @@ function Onboarding() {
           ...skipText,
           fontFamily: fontFamilyReg,
         }}
-        //   onPress={() => navigation.navigate('Pressed')}
+        onPress={() => navigation.navigate('welcome')}
       >
         Skip
       </Text>
