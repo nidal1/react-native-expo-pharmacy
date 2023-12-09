@@ -6,7 +6,7 @@ export default function Wrapper({ className, children }) {
   return (
     <View
       style={{ width: Dimensions.get('screen').width }}
-      className={twMerge('px-10', className)}
+      className={twMerge('px-10 flex-col', className)}
     >
       {children}
     </View>

@@ -11,7 +11,7 @@ export default function Welcome({ navigation }) {
   const fontFamilyB = fontsLoaded ? 'Raleway-Bold' : '';
   const fontFamilyR = fontsLoaded ? 'Raleway-Regular' : '';
   return (
-    <View className="flex-1 items-center justify-center">
+    <View className="flex-1 items-center justify-center bg-white">
       <Wrapper>
         <Text
           style={{ fontFamily: fontFamilyB }}
@@ -24,17 +24,22 @@ export default function Welcome({ navigation }) {
       <Image source={welcome} alt="welcome image" />
 
       <Wrapper>
-        <Button
-          buttonStyle={{ marginBottom: 16, marginTop: 72 }}
-          mode="contained"
-          onPress={() => navigation.navigate('Pressed')}
-        >
-          Sign in
-        </Button>
+        <View className="flex-col gap-4 mt-[72px]">
+          <Button
+            mode="contained"
+            onPress={() => navigation.navigate('signin')}
+            buttonStyle={{ marginBottom: 16 }}
+          >
+            Sign in
+          </Button>
 
-        <Button mode="contained" onPress={() => navigation.navigate('Pressed')}>
-          Sign up
-        </Button>
+          <Button
+            mode="contained"
+            onPress={() => navigation.navigate('signup')}
+          >
+            Sign up
+          </Button>
+        </View>
       </Wrapper>
 
       <Text
