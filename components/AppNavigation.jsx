@@ -5,13 +5,14 @@ import Onboarding from '../screens/Onboarding';
 import Welcome from '../screens/Welcome';
 import Signup from '../screens/Signup';
 import Signin from '../screens/Signin';
+import Main from '../screens/Main';
 
 const Stack = createNativeStackNavigator();
 
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="welcome">
+      <Stack.Navigator initialRouteName="main">
         <Stack.Screen
           name="onboarding"
           component={Onboarding}
@@ -32,6 +33,12 @@ function AppNavigation() {
         <Stack.Screen
           name="signin"
           component={Signin}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="main"
+          component={Main}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
