@@ -11,6 +11,7 @@ import { loadAsync } from 'expo-font';
 const customFonts = {
   'Raleway-Light': require('../assets/fonts/Raleway-Light.ttf'),
   'Raleway-Regular': require('../assets/fonts/Raleway-Regular.ttf'),
+  'Mansalva-Regular': require('../assets/fonts/Mansalva-Regular.ttf'),
   'Raleway-Medium': require('../assets/fonts/Raleway-Medium.ttf'),
   'Raleway-SemiBold': require('../assets/fonts/Raleway-SemiBold.ttf'),
   'Raleway-Bold': require('../assets/fonts/Raleway-Bold.ttf'),
