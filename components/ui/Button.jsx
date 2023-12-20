@@ -13,9 +13,6 @@ export default function Button(props) {
 
   if (props.mode === 'outlined') {
     border = 'border border-[#1C3146]';
-  }
-
-  if (props.mode === 'outlined') {
     background = 'bg-white';
   }
 
@@ -29,7 +26,7 @@ export default function Button(props) {
       style={props.buttonStyle}
     >
       {props.withIcon ? (
-        <Image source={props.customIcon} className="mr-3" />
+        <Image source={props.customIcon} className="mr-1" />
       ) : null}
       <Text
         style={{ fontFamily: fontFamilyB, ...props.textStyle }}

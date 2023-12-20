@@ -1,7 +1,7 @@
-import React, { createContext, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import MainHeader from '../components/main/MainHeader';
 
-const context = createContext();
+const MainHeaderContext = createContext();
 const initialState = {
   title: 'Gaza',
   iconType: 'menu',
@@ -20,14 +20,23 @@ const reducer = (state = initialState, { type, payload }) => {
 function MainHeaderProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <context.Provider
+    <MainHeaderContext.Provider
       value={useMemo(() => ({ state, dispatch }), [state, dispatch])}
     >
       <MainHeader {...state} />
       {children}
-    </context.Provider>
+    </MainHeaderContext.Provider>
   );
 }
 
-export default context;
-export { MainHeaderProvider };
+function useMainHeader() {
+  const context = useContext(MainHeaderContext);
+
+  if (context === undefined) {
+    throw new Error('No context provided for useMainHeader');
+  }
+  return context;
+}
+
+export default MainHeaderContext;
+export { MainHeaderProvider, useMainHeader };

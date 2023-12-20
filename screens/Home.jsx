@@ -25,7 +25,7 @@ const cards = [
   },
 ];
 
-function Home() {
+function Home({ navigation }) {
   const { fontsLoaded } = useFonts();
   const fontFamilyEB = fontsLoaded ? 'Raleway-ExtraBold' : '';
   const fontFamilyB = fontsLoaded ? 'Raleway-Bold' : '';
@@ -73,19 +73,40 @@ function Home() {
 
       <ScrollView className="flex flex-col flex-1">
         <View className="flex flex-row justify-between gap-x-1 mb-4">
-          <CategoryCard text="Mom & Baby" className="bg-[#2879FF]" />
+          <CategoryCard
+            text="Mom & Baby"
+            className="bg-[#2879FF]"
+            onPress={() => navigation.navigate('pharmacy')}
+          />
           <CategoryCard
             text="Fighting the infection"
             className="bg-[#3CB5B7]"
+            onPress={() => navigation.navigate('pharmacy')}
           />
         </View>
         <View className="flex flex-row justify-between gap-x-1 mb-4">
-          <CategoryCard text="Diabetes" className="bg-[#F6529F]" />
-          <CategoryCard text="Antibiotics" className="bg-[#FF6563]" />
+          <CategoryCard
+            text="Diabetes"
+            className="bg-[#F6529F]"
+            onPress={() => navigation.navigate('pharmacy')}
+          />
+          <CategoryCard
+            text="Antibiotics"
+            className="bg-[#FF6563]"
+            onPress={() => navigation.navigate('pharmacy')}
+          />
         </View>
         <View className="flex flex-row justify-between gap-x-1 mb-4">
-          <CategoryCard text="Drugs" className="bg-[#FF9253]" />
-          <CategoryCard text="Women" className="bg-[#7879F1]" />
+          <CategoryCard
+            text="Drugs"
+            className="bg-[#FF9253]"
+            onPress={() => navigation.navigate('pharmacy')}
+          />
+          <CategoryCard
+            text="Women"
+            className="bg-[#7879F1]"
+            onPress={() => navigation.navigate('pharmacy')}
+          />
         </View>
       </ScrollView>
     </MainLayout>
